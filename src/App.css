@@ -1,0 +1,145 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background-color: #f3effa;
+  color: #261c38;
+  padding: 36px 16px;
+}
+
+.container {
+  max-width: 520px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border: 1px solid #dfd7ee;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+h1 {
+  font-size: 1.45rem;
+  color: #3b1d6e;
+  margin-bottom: 16px;
+}
+
+.form-busca {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.form-busca input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  color: #261c38;
+  background-color: #ffffff;
+  border: 1px solid #cbc0e0;
+  border-radius: 8px;
+  outline: none;
+}
+
+.form-busca input:focus {
+  border-color: #6d28d9;
+}
+
+.form-busca button {
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #6d28d9;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.form-busca button:hover:not(:disabled) {
+  background-color: #5b21b6;
+}
+
+.form-busca button:disabled {
+  opacity: 0.65;
+  cursor: default;
+}
+
+.erro {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+.lista-ceps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cep-card {
+  padding: 14px 16px;
+  background-color: #faf8fd;
+  border: 1px solid #e4ddf2;
+  border-radius: 8px;
+}
+
+.cep-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.cep-topo strong {
+  font-size: 1.02rem;
+  color: #5b21b6;
+}
+
+.cep-topo span {
+  font-size: 0.88rem;
+  color: #6c5f87;
+}
+
+.logradouro {
+  font-size: 0.96rem;
+  margin-bottom: 4px;
+}
+
+.detalhe {
+  font-size: 0.88rem;
+  color: #5e5275;
+  margin-top: 2px;
+}
+
+.info {
+  text-align: center;
+  color: #6c5f87;
+  font-size: 0.92rem;
+  padding: 16px 0;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 16px 12px;
+  }
+
+  .container {
+    padding: 18px 16px;
+  }
+
+  .form-busca {
+    flex-direction: column;
+  }
+
+  .form-busca button {
+    width: 100%;
+  }
+}
