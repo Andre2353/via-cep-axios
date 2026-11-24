@@ -14,7 +14,6 @@ Projeto simples em React + Vite consumindo a API do [ViaCEP](https://viacep.com.
 - React 18
 - Vite
 - Axios
-- CSS puro
 
 ## Estrutura
 
