@@ -5,14 +5,44 @@ import CepCard from './components/CepCard'
 function App() {
   const [cep, setCep] = useState('')
   const [enderecos, setEnderecos] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [erro, setErro] = useState('')
 
   async function buscarCep(valorCep) {
     const cepLimpo = valorCep.replace(/\D/g, '')
-    if (cepLimpo.length !== 8) return
 
-    const { data } = await api.get(`/${cepLimpo}/json/`)
-    if (!data.erro) {
-      setEnderecos((atual) => [data, ...atual])
+    if (!cepLimpo) {
+      setErro('Informe um CEP.')
+      return
+    }
+
+    if (cepLimpo.length !== 8) {
+      setErro('CEP inválido. Digite os 8 números.')
+      return
+    }
+
+    try {
+      setLoading(true)
+      setErro('')
+
+      const { data } = await api.get(`/${cepLimpo}/json/`)
+
+      // ViaCEP retorna 200 mesmo quando o CEP não existe
+      if (data.erro) {
+        setErro('CEP não encontrado.')
+        return
+      }
+
+      setEnderecos((atual) => {
+        const semRepetido = atual.filter((item) => item.cep !== data.cep)
+        return [data, ...semRepetido]
+      })
+
+      setCep('')
+    } catch {
+      setErro('Erro ao buscar o CEP. Verifique sua conexão.')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -37,8 +67,14 @@ function App() {
           onChange={(e) => setCep(e.target.value)}
           maxLength={9}
         />
-        <button type="submit">Buscar</button>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Buscando...' : 'Buscar'}
+        </button>
       </form>
+
+      {erro && <p className="erro">{erro}</p>}
+
+      {loading && enderecos.length === 0 && <p className="info">Buscando...</p>}
 
       <div className="lista-ceps">
         {enderecos.map((item) => (
